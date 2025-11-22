@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CocinandoConJavaApplication {
 
 	public static void main(String[] args) {
+		// 01:27:24
 		SpringApplication.run(CocinandoConJavaApplication.class, args);
 	}
 
