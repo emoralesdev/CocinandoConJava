@@ -28,7 +28,9 @@ public class Pruebas implements CommandLineRunner {
 		
 		dificultadRepository.findAll().forEach(System.out::println);
 		
-		recetasRepository.save(Receta.builder().nombre("Arepas").descripcion("..").image("..").dificultad(easy).build());
+		recetasRepository.save(Receta.builder().nombre("Spaghetti Bolognesa").descripcion("..").dificultad(easy).build());
+		recetasRepository.save(Receta.builder().nombre("Pollo al Curry").descripcion("..").dificultad(easy).build());
+		recetasRepository.save(Receta.builder().nombre("Tarta de Queso").descripcion("..").dificultad(easy).build());
 	}
 
 }

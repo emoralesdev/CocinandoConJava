@@ -27,14 +27,13 @@ public class Receta {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank
+	@NotBlank(message = "El nombre es obligatorio")
 	@Size(max = 20)
 	private String nombre;
 	@Lob
 	@Size(max = 50000)
 	private String descripcion;
-	@Size(max = 255)
-	private String image;
+	
 	@ManyToOne
 	@JoinColumn(name="FK_dificultad")
 	private Dificultad dificultad;

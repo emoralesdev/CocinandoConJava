@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="https://www.thymeleaf.org">
+<title>Cocinando Con Java</title>
+<main class="p-4">
+	<div class="container">
+		<h1>Registro Receta</h1>	
+		
+		<form id="recetaform" th:action="@{/registro}" method="post" th:object="${receta}">
+			<div class="mb-3">
+		    	<div th:replace="~{_fragmentos :: labelInput('Nombre', 'nombre', 'text')}"></div>
+			</div>
+			<div class="mb-3">
+		    	<div th:replace="~{_fragmentos :: labelInput('Descripcion', 'descripcion', 'text')}"></div>
+			</div>
+		    
+		    <div class="mb-3">
+		        <label for="dificultad" class="form-label">Dificultad</label>
+	
+		        <select th:field="*{dificultad}" id="dificultad" class="form-select" required>
+		            <option value="">Seleccione una dificultad...</option>
+	
+		            <option th:each="d : ${dificultades}"
+		                    th:value="${d.id}"
+		                    th:text="${d.dificultad}">
+		            </option>
+		        </select>
+		    </div>
+		    <button type="submit" class="btn btn-primary">Registrar Receta</button>
+		</form>
+	</div>
+</main>
+
