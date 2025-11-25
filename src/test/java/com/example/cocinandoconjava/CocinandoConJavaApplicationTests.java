@@ -1,4 +1,4 @@
-package com.example.CocinandoConJava;
+package com.example.cocinandoconjava;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

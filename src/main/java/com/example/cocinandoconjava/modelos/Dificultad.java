@@ -1,13 +1,9 @@
-package com.example.CocinandoConJava.modelos;
-
+package com.example.cocinandoconjava.modelos;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
@@ -20,21 +16,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-
 @Entity
-@Table(name="recetas")
-public class Receta {
+@Table(name = "dificultades")
+public class Dificultad {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank(message = "El nombre es obligatorio")
-	@Size(max = 20)
-	private String nombre;
-	@Lob
-	@Size(max = 50000)
-	private String descripcion;
-	
-	@ManyToOne
-	@JoinColumn(name="FK_dificultad")
-	private Dificultad dificultad;
+
+	@NotBlank
+	@Size(max = 80)
+	private String dificultad;
 }
