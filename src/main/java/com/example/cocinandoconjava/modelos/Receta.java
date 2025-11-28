@@ -35,6 +35,9 @@ public class Receta {
 	@Lob
 	@Size(max = 50000)
 	private String descripcion;
+	
+	@Builder.Default
+	private String image = "default.png";
 
 	@NotNull(message = "La dificultad es obligatoria")
 	@ManyToOne

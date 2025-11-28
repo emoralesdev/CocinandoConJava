@@ -13,6 +13,7 @@
 	        <thead class="table-dark">
 	            <tr>
 	                <th>ID</th>
+	                <th>Imagen</th>
 	                <th>Nombre</th>
 	                <th>Dificultad</th>
 	            </tr>
@@ -21,6 +22,11 @@
 	        <tbody>
 	            <tr th:each="receta : ${recetas}">
 	                <td th:text="${receta.id}"></td>
+	                <td>
+					    <img th:src="@{'/uploads/' + ${receta.image}}" 
+					         alt="Imagen receta"
+					         style="width:80px; height:auto;"/>
+					</td>
 	                <td th:text="${receta.nombre}"></td>
 	                <td th:text="${receta.dificultad.dificultad}"></td>
 	            </tr>
