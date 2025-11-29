@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.example.cocinandoconjava.modelos.Dificultad;
 import com.example.cocinandoconjava.modelos.Receta;
 import com.example.cocinandoconjava.servicios.AnonimoService;
+import com.example.cocinandoconjava.utils.HtmlSanitizer;
 
 import jakarta.validation.Valid;
 
@@ -70,8 +71,6 @@ public class IndexController {
 		
 		
 		if (!file.isEmpty()) {
-			
-			
 		    String fileName = file.getOriginalFilename();
 
 		    Path directory = Paths.get(uploadDir);
@@ -79,12 +78,14 @@ public class IndexController {
 		    System.out.println("Ruta carpeta: " + directory.toAbsolutePath());
 
 		    Path filePath = directory.resolve(fileName);
-
 		    Files.copy(file.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
 			
 			receta.setImage(fileName);
 		}
-
+		
+		String cleanHtml = HtmlSanitizer.clean(receta.getContenidoHtml());
+		receta.setContenidoHtml(cleanHtml);
+		
 		anonimoService.guardar(receta);
 		return "redirect:/insertar";
 	}

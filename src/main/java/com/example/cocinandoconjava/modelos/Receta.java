@@ -1,5 +1,6 @@
 package com.example.cocinandoconjava.modelos;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -28,7 +29,7 @@ public class Receta {
 	private Long id;
 
 	@NotBlank(message = "El nombre es obligatorio")
-	@Size(max = 20)
+	@Size(max = 200)
 	private String nombre;
 
 	@NotBlank(message = "La descripción es obligatoria")
@@ -38,6 +39,9 @@ public class Receta {
 	
 	@Builder.Default
 	private String image = "default.png";
+	
+	@Column(columnDefinition = "TEXT")
+	private String contenidoHtml;
 
 	@NotNull(message = "La dificultad es obligatoria")
 	@ManyToOne
