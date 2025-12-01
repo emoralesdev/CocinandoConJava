@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -42,7 +43,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("mostrar")
-	public String detalle(Model modelo) {
+	public String mostrar(Model modelo) {
 		
         List<Receta> recetas = anonimoService.listadoRecetas();
         modelo.addAttribute("recetas", recetas);
@@ -51,7 +52,7 @@ public class IndexController {
 	}
 	
 	@GetMapping("insertar")
-	public String registro(Model model) {
+	public String insertar(Model model) {
 		
 		 model.addAttribute("receta", new Receta());
 		 List<Dificultad> dificultades = anonimoService.listadoDificultades();
@@ -86,8 +87,16 @@ public class IndexController {
 		String cleanHtml = HtmlSanitizer.clean(receta.getContenidoHtml());
 		receta.setContenidoHtml(cleanHtml);
 		
-		anonimoService.guardar(receta);
-		return "redirect:/insertar";
+		Receta recetaObj = anonimoService.guardar(receta);
+		return "redirect:/detalle?id=" + recetaObj.getId();
+	}
+	
+	@GetMapping("detalle")
+	public String detalle(Model model, @RequestParam Long id) {
+		Optional<Receta> receta = anonimoService.obtenerReceta(id);
+		System.out.println(receta);
+		model.addAttribute("receta", receta);
+		return "detalle";
 	}
 	
 }
