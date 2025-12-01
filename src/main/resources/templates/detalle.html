@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html th:replace="~{_global :: plantilla(~{::title}, ~{::main})}"
+	xmlns:th="https://www.thymeleaf.org">
+<title>Cocinando Con Java</title>
+<main>
+	
+	
+	<div class="container">
+	<div th:if="${receta.isPresent()}">
+	    <h3>Detalle de la Receta (Para Depuración)</h3>
+		<p th:text="${receta}"></p>
+		<h1 th:text="${receta.get().nombre}"></h1>
+		<img th:src="@{'/uploads/' + ${receta.get().image}}" 
+					         alt="Imagen receta"
+					         style="width:80px; height:auto;"/>
+		<h1 th:text="${receta.get().descripcion}"></h1>
+		<div th:if="${receta.isPresent()}" th:object="${receta.get()}">
+    
+		    <h2>Contenido Detallado de la Receta</h2>
+		    
+		    <div th:utext="*{contenidoHtml}">
+		        </div>
+		    
+		</div>
+
+	   
+	</div>
+	    
+	    <!-- Mensaje si la lista está vacía -->
+	   <div th:unless="${receta.isPresent()}" class="alert alert-danger">
+        ¡Error! No se encontró ninguna receta con el ID proporcionado.
+    	</div>
+	</div>
+
+</main>
